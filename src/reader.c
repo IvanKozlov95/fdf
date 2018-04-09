@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 11:40:50 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 15:46:38 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/09 16:38:23 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	read_lines(int fd, t_list **list)
 		if (expected == -1)
 			expected = (int)ft_count_words(line, ' ');
 		tmp = ft_lstnew(line, ft_strlen(line) + 1);
-		LST_ADDCREATE(list, tmp);
+		LST_ADDCREATE(*list, tmp);
 		if (expected != (int)ft_count_words(line, ' '))
 			return (cleanup(list));
 		ft_strdel(&line);
@@ -44,7 +44,7 @@ static int	read_lines(int fd, t_list **list)
 	return (expected);
 }
 
-int		read_map(int fd, t_map **m)
+int			read_map(int fd, t_map **m)
 {
 	int		wc;
 	t_list	*list;
@@ -52,7 +52,7 @@ int		read_map(int fd, t_map **m)
 	list = NULL;
 	if (!(wc = read_lines(fd, &list)))
 		return (0);
-	*m = init_map(ft_lstcount(list), wc);
+	*m = init_map(wc, ft_lstcount(list));
 	populate_map(m, list);
 	cleanup(&list);
 	return (1);
