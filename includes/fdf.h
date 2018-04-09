@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 15:43:30 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/09 16:45:31 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_map		t_map;
 */
 t_map						*init_map(int width, int height);
 int							populate_map(t_map **m, t_list *list);
+int							read_map(int fd, t_map **m);
 
 void						ft_free_split(char **sp);
 
