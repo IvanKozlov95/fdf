@@ -47,4 +47,6 @@ typedef struct s_map		t_map;
 t_map						*init_map(int width, int height);
 int							populate_map(t_map **m, t_list *list);
 
+void						ft_free_split(char **sp);
+
 #endif
