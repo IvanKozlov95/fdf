@@ -6,7 +6,7 @@
 #    By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/08 21:31:12 by ikozlov           #+#    #+#              #
-#    Updated: 2018/04/09 13:17:32 by ikozlov          ###   ########.fr        #
+#    Updated: 2018/04/09 16:21:03 by ikozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,9 @@ NAME = fdf
 
 # compiler
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
 DEBUG = -g
+FLAGS = -Wall -Wextra -Werror
+FLAGS += $(DEBUG)
 
 # directories
 OBJ_DIR = obj/
