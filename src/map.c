@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:52:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 15:46:11 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/09 16:46:38 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		populate_map(t_map **m, t_list *list)
 		split = ft_strsplit(list->content, ' ');
 		while (++j < (*m)->width)
 			SETXYZ((*m)->points[i * (*m)->width + j], j, i, ft_atoi(split[j]));
-		// todo: free split
+		ft_free_split(split);
 		list = list->next;
 	}
 	return (1);
