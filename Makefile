@@ -6,7 +6,7 @@
 #    By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/08 21:31:12 by ikozlov           #+#    #+#              #
-#    Updated: 2018/04/08 21:53:59 by ikozlov          ###   ########.fr        #
+#    Updated: 2018/04/09 13:17:32 by ikozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ OBJ_DIR = obj/
 SRC_DIR = src/
 INC_DIR = includes/
 LIBFT_DIR = libft/
+MLX_DIR = minilibx/
 
 # files
 SRC_FILES = $(notdir $(wildcard $(SRC_DIR)*.c))
@@ -30,7 +31,13 @@ OBJ_FILES = $(SRC_FILES:%.c=%.o)
 # full paths
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+
+# libraries
 LIBFT = $(LIBFT_DIR)libft.a
+LIBMLX = $(MLX_DIR)libmlx.a
+LIB = $(LIBFT)
+LIB += $(LIBMLX)
+LIB += -framework OpenGL -framework AppKit
 
 # includes
 INCLUDES = -I $(LIBFT_DIR)includes -I includes/
@@ -39,7 +46,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT)
+	@$(MAKE) -C $(MLX_DIR)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIB)
 	@echo "[INFO] $(NAME) executable created"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)
@@ -48,6 +56,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_DIR)
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(MLX_DIR) clean
 	@if [ -d "./$(OBJ_DIR)" ]; then\
 		/bin/rm -rf $(OBJ_DIR);\
 		/bin/echo "[INFO] Objects removed.";\
