@@ -6,7 +6,7 @@
 #    By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/08 21:31:12 by ikozlov           #+#    #+#              #
-#    Updated: 2018/04/09 16:21:03 by ikozlov          ###   ########.fr        #
+#    Updated: 2018/04/09 19:17:57 by ikozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ LIB += $(LIBMLX)
 LIB += -framework OpenGL -framework AppKit
 
 # includes
-INCLUDES = -I $(LIBFT_DIR)includes -I includes/
+INCLUDES = -I $(LIBFT_DIR)includes -I includes/ -I $(MLX_DIR)
 
 all: $(NAME)
 
