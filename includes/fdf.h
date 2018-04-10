@@ -25,6 +25,17 @@
 # define ERR_INVMAP "error: invalid map"
 # define ERR_MLXINIT "error: mlx couldn't init"
 
+
+struct						s_image
+{
+	void					*image;
+	void					*ptr;
+	int						bpp;
+	int						stride;
+	int						endian;
+};
+typedef struct s_image		t_image;
+
 struct						s_point3d
 {
 	double					x;
@@ -45,8 +56,9 @@ typedef struct s_map		t_map;
 struct						s_mlx
 {
 	void					*mlx;
-	t_map					*map;
+	t_image					*image;
 	void					*window;
+	t_map					*map;
 };
 typedef struct s_mlx		t_mlx;
 

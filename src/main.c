@@ -37,7 +37,7 @@ t_mlx	*init_mlx(char *title)
 	mlx = NULL;
 	mlx = ft_memalloc(sizeof(t_mlx));
 	mlx->mlx = mlx_init();
-	mlx->window = mlx_new_window(mlx->mlx, 100, 100, title);
+	mlx->image = image_init(mlx);
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);
 	return (mlx);
