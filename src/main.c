@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 21:35:24 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 19:30:30 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 15:40:44 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_mlx	*init_mlx(char *title)
 	mlx = NULL;
 	mlx = ft_memalloc(sizeof(t_mlx));
 	mlx->mlx = mlx_init();
+	mlx->window = mlx_new_window(mlx->mlx, MIN_WIDTH, MIN_HEIGHT, title);
 	mlx->image = image_init(mlx);
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);

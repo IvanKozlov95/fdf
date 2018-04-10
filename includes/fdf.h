@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 21:23:26 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 15:42:00 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ERR_INVMAP "error: invalid map"
 # define ERR_MLXINIT "error: mlx couldn't init"
 
+# define MIN_WIDTH 1000
+# define MIN_HEIGHT 600
 
 struct						s_image
 {
