@@ -17,6 +17,14 @@
 # include "list.h"
 # include "math.h"
 
+/*
+**	String constants
+*/
+
+# define USAGE "usage: ./fdf [filename]"
+# define ERR_INVMAP "error: invalid map"
+# define ERR_MLXINIT "error: mlx couldn't init"
+
 struct						s_point3d
 {
 	double					x;
