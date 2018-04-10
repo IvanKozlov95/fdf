@@ -26,6 +26,7 @@ int		main(int ac, char *av[])
 	int		fd;
 	t_map	*map;
 
+	map = NULL;
 	if (ac != 2)
 		die(0, "usage: ./fdf [filename]");
 	fd = open(av[1], O_RDONLY);
