@@ -6,22 +6,25 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 22:13:03 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 15:49:00 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <mlx.h>
 #include <math.h>
 
-void		iterate_points(t_map *map, void (*f)(t_map *, int, int))
+void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 {
 	int		i;
 	int		size;
+	t_map	*map;
 
 	i = -1;
+	map = mlx->map;
 	size = map->height * map->width;
 	while (++i < size)
-		f(map, i % map->width, i / map->height);
+		f(mlx, i % map->width, i / map->height);
 }
 
 /*
@@ -43,26 +46,44 @@ void		iterate_points(t_map *map, void (*f)(t_map *, int, int))
 **            error := error - 1.0
 */
 
-void		draw_line(t_point3d p1, t_point3d p2)
+void		draw_line(t_mlx *mlx, t_point3d p1, t_point3d p2)
 {
 	int		dx;
 	int		dy;
 	int		derr;
+	int		x;
+	int		y;
+	double	err;
 
 	dx = (int)ABS(p1.x - p2.x);
 	dy = (int)ABS(p1.y - p2.y);
+	derr = ABS(dy - dx);
+	x = (int)p1.x - 1;
+	y = (int)p1.y;
+	err = 0.5;
+	while (++x < (int)p2.x)
+	{
+		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
+			*(int *)(mlx->image->ptr + (x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff0000;
+		err += derr;
+		if (err > 0.5)
+		{
+			y += dy;
+			err--;
+		}
+	}
 	return ;
 }
 
-void		iterator(t_map *map, int x, int y)
+void		iterator(t_mlx *mlx, int x, int y)
 {
-	t_point3d	p;
-
-	PROJP(GET_POINT(map, x, y), map);
-	draw_line(GET_POINT(map, x, y), GET_POINT(map, x + 1, y));
+	PROJP(GET_POINT(mlx->map, x, y), mlx->map);
+	draw_line(mlx, GET_POINT(mlx->map, x, y), GET_POINT(mlx->map, x + 1, y));
 }
 
 void		render(t_mlx *mlx)
 {
-	iterate_points(mlx->map, iterator);
+	iterate_points(mlx, iterator);
+	*(int *)(mlx->image->ptr + (10 + 10 * MIN_WIDTH) * mlx->image->bpp) = 0x00FF00;
+	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image->image, 0, 0);
 }
