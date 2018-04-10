@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 19:23:55 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/09 21:23:26 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ typedef struct s_mlx		t_mlx;
 */
 # define SETZ(p, _z) (p.z = _z)
 # define SETXYZ(p, _x, _y, _z) (SETXY(p, _x, _y) && SETZ(p, _z))
+
+# define PROJX(p, map) (p.x -= (double)(map->width - 1) / 2.0f)
+# define PROJY(p, map) (p.y -= (double)(map->height - 1) / 2.0f)
+# define PROJP(p, map) (PROJX(p, map) && PROJY(p, map))
+# define GET_POINT(map, x, y) (map->points[y * map->width + x])
 
 /*
 **	Declarations
