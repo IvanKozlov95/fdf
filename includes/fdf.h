@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/09 16:45:31 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/09 19:23:55 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ struct						s_map
 };
 typedef struct s_map		t_map;
 
+struct						s_mlx
+{
+	void					*mlx;
+	t_map					*map;
+	void					*window;
+};
+typedef struct s_mlx		t_mlx;
 
 /*
 **	MACROS
