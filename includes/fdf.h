@@ -79,6 +79,9 @@ typedef struct s_mlx		t_mlx;
 t_map						*init_map(int width, int height);
 int							populate_map(t_map **m, t_list *list);
 int							read_map(int fd, t_map **m);
+void						render(t_mlx *mlx);
+
+t_image						*image_init(t_mlx *mlx);
 
 void						ft_free_split(char **sp);
 

@@ -59,6 +59,7 @@ int		main(int ac, char *av[])
 	if (mlx == NULL)
 		die(1, ERR_MLXINIT);
 	mlx->map = map;
+	render(mlx);
 	mlx_loop(mlx->mlx);
 	return (0);
 }
