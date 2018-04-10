@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "memory.h"
 #include "fdf.h"
 #include <fcntl.h>
 #include <stdlib.h>
@@ -21,6 +22,25 @@ void	die(int code, char *msg)
 	exit(code);
 }
 
+void	del_mlx(t_mlx **mlx)
+{
+	if (*mlx)
+		ft_free(3, (*mlx)->mlx, (*mlx)->window, *mlx);
+	*mlx = NULL;
+}
+
+t_mlx	*init_mlx(char *title)
+{
+	t_mlx	*mlx;
+
+	mlx = NULL;
+	mlx = ft_memalloc(sizeof(t_mlx));
+	mlx->mlx = mlx_init();
+	mlx->window = mlx_new_window(mlx->mlx, 100, 100, title);
+	if (mlx->mlx == NULL || mlx->window == NULL)
+		del_mlx(&mlx);
+	return (mlx);
+}
 int		main(int ac, char *av[])
 {
 	int		fd;
