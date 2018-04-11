@@ -6,12 +6,11 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 20:48:50 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 22:07:20 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "ft_math.h"
 #include <mlx.h>
 #include <stdio.h>
 
@@ -46,46 +45,42 @@ void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 **			error := error - 1.0
 */
 
-void		draw_line(t_mlx *mlx, t_point3d p1, t_point3d p2)
+void		draw_line(t_mlx *mlx, t_bshm_line line)
 {
-	int		dx;
-	int		dy;
-	int		derr;
 	int		x;
 	int		y;
-	double	err;
 
-	dx = (int)ABS(p1.x - p2.x);
-	dy = (int)ABS(p1.y - p2.y);
-	derr = ABS(dy - dx);
-	x = (int)p1.x - 1;
-	y = (int)p1.y;
-	err = 0.5;
-	while (++x < (int)p2.x)
+	x = (int)line.s.x;
+	y = (int)line.s.y;
+	while (x <= line.e.x)
 	{
 		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
+		{
 			*(int *)(mlx->image->ptr +
 				((x + y * MIN_WIDTH) * mlx->image->bpp)) = 0xff0000;
-		err += derr;
-		if (err > 0.5)
-		{
-			y += dy;
-			err--;
 		}
+		line.err += line.derr;
+		while (line.err > 0.5)
+			(y += line.sy) && (line.err -= 1);
+		x += line.sx;
 	}
-	return ;
 }
 
-void		iterator(t_mlx *mlx, int x, int y)
+void		draw_lines(t_mlx *mlx, int x, int y)
 {
 	t_point3d	p;
 	t_point3d	p2;
 
-	if (x + 1 < mlx->map->width * mlx->map->height)
+	p = point_project(GET_POINT(mlx->map, x, y), mlx);
+	if (x + 1 < mlx->map->width)
 	{
-		p = point_project(GET_POINT(mlx->map, x, y), mlx);
 		p2 = point_project(GET_POINT(mlx->map, x + 1, y), mlx);
-		draw_line(mlx, p, p2);
+		draw_line(mlx, line_init(p, p2));
+	}
+	if (y + 1 < mlx->map->height)
+	{
+		p2 = point_project(GET_POINT(mlx->map, x, y + 1), mlx);
+		draw_line(mlx, line_init(p, p2));
 	}
 }
 
@@ -95,16 +90,25 @@ void		light_points(t_mlx *mlx, int x, int y)
 
 	p = GET_POINT(mlx->map, x, y);
 	p = point_project(p, mlx);
-	if (x == 0)
-		log_point(p);
 	if (p.x > 0 && p.x <= MIN_WIDTH && p.y >= 0 && p.y <= MIN_HEIGHT)
 		*(int *)(mlx->image->ptr +
 				((int)p.x + (int)p.y * MIN_WIDTH) * mlx->image->bpp) = 0x00ff00;
 }
 
+void		asd(t_mlx *mlx, int x, int y)
+{
+	t_point3d	p;
+	t_point3d	p2;
+
+	p = point_project(GET_POINT(mlx->map, x, y), mlx);
+	p2 = point_project(GET_POINT(mlx->map, x, y + 1), mlx);
+	draw_line(mlx, line_init(p, p2));
+}
+
 void		render(t_mlx *mlx)
 {
-	iterate_points(mlx, iterator);
+	iterate_points(mlx, draw_lines);
 	iterate_points(mlx, light_points);
+	// asd(mlx, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image->image, 0, 0);
 }
