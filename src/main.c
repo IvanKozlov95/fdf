@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 21:35:24 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 15:40:44 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 20:49:12 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ t_mlx	*init_mlx(char *title)
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);
 	return (mlx);
+}
+
+void	print_mlx(t_mlx *mlx)
+{
+	int			i;
+	t_map		*map;
+	t_point3d	p;
+
+	i = -1;
+	map = mlx->map;
+	ft_printf("Points\n");
+	while (++i < map->width * map->height)
+	{
+		p = GET_POINT(map, i % map->width, i / map->width);
+		ft_printf("#%d (%d, %d, %d)\n", i, (int)p.x, (int)p.y, (int)p.z);
+	}
 }
 
 int		main(int ac, char *av[])
