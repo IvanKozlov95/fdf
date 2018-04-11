@@ -6,13 +6,14 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 15:49:00 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 20:48:50 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "ft_math.h"
 #include <mlx.h>
-#include <math.h>
+#include <stdio.h>
 
 void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 {
