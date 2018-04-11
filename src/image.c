@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 15:27:07 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 15:42:26 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 16:53:41 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ t_image		*image_init(t_mlx *mlx)
 	img->image = mlx_new_image(mlx->mlx, MIN_WIDTH, MIN_HEIGHT);
 	img->ptr = mlx_get_data_addr(img->image, &img->bpp,
 									&img->stride, &img->endian);
+	img->bpp /= 8;
 	return (img);
 }
