@@ -24,7 +24,7 @@ void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 	map = mlx->map;
 	size = map->height * map->width;
 	while (++i < size)
-		f(mlx, i % map->width, i / map->height);
+		f(mlx, i % map->width, i / map->width);
 }
 
 /*
