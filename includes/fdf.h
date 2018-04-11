@@ -67,8 +67,7 @@ typedef struct s_mlx		t_mlx;
 /*
 **	MACROS
 */
-# define SETZ(p, _z) (p.z = _z)
-# define SETXYZ(p, _x, _y, _z) (SETXY(p, _x, _y) && SETZ(p, _z))
+
 
 # define PROJX(p, map) (p.x -= (double)(map->width - 1) / 2.0f)
 # define PROJY(p, map) (p.y -= (double)(map->height - 1) / 2.0f)
