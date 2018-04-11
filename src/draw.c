@@ -77,13 +77,23 @@ void		draw_line(t_mlx *mlx, t_point3d p1, t_point3d p2)
 
 void		iterator(t_mlx *mlx, int x, int y)
 {
-	PROJP(GET_POINT(mlx->map, x, y), mlx->map);
-	draw_line(mlx, GET_POINT(mlx->map, x, y), GET_POINT(mlx->map, x + 1, y));
+
+void		light_points(t_mlx *mlx, int x, int y)
+{
+	t_point3d	p;
+
+	p = GET_POINT(mlx->map, x, y);
+	p = point_project(p, mlx);
+	if (x == 0)
+		log_point(p);
+	if (p.x > 0 && p.x <= MIN_WIDTH && p.y >= 0 && p.y <= MIN_HEIGHT)
+		*(int *)(mlx->image->ptr +
+				((int)p.x + (int)p.y * MIN_WIDTH) * mlx->image->bpp) = 0x00ff00;
 }
 
 void		render(t_mlx *mlx)
 {
 	iterate_points(mlx, iterator);
-	*(int *)(mlx->image->ptr + (10 + 10 * MIN_WIDTH) * mlx->image->bpp) = 0x00FF00;
+	iterate_points(mlx, light_points);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image->image, 0, 0);
 }
