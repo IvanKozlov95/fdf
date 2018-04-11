@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 15:42:00 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 20:42:26 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "matrix.h"
 # include "list.h"
-# include "math.h"
+# include <stdio.h>
 
 /*
 **	String constants
@@ -83,6 +83,10 @@ int							read_map(int fd, t_map **m);
 void						render(t_mlx *mlx);
 
 t_image						*image_init(t_mlx *mlx);
+
+t_point3d					point_project(t_point3d	p, t_mlx *mlx);
+
+void						log_point(t_point3d p);
 
 void						ft_free_split(char **sp);
 
