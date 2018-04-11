@@ -63,7 +63,8 @@ void		draw_line(t_mlx *mlx, t_point3d p1, t_point3d p2)
 	while (++x < (int)p2.x)
 	{
 		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
-			*(int *)(mlx->image->ptr + (x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff0000;
+			*(int *)(mlx->image->ptr +
+				((x + y * MIN_WIDTH) * mlx->image->bpp)) = 0xff0000;
 		err += derr;
 		if (err > 0.5)
 		{
@@ -76,6 +77,16 @@ void		draw_line(t_mlx *mlx, t_point3d p1, t_point3d p2)
 
 void		iterator(t_mlx *mlx, int x, int y)
 {
+	t_point3d	p;
+	t_point3d	p2;
+
+	if (x + 1 < mlx->map->width * mlx->map->height)
+	{
+		p = point_project(GET_POINT(mlx->map, x, y), mlx);
+		p2 = point_project(GET_POINT(mlx->map, x + 1, y), mlx);
+		draw_line(mlx, p, p2);
+	}
+}
 
 void		light_points(t_mlx *mlx, int x, int y)
 {
