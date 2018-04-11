@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 20:42:26 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/10 21:18:40 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,22 @@ struct						s_mlx
 };
 typedef struct s_mlx		t_mlx;
 
+struct						s_bshm_line
+{
+	int						dx;
+	int						dy;
+	int						sx;
+	int						sy;
+	int						derr;
+	double					err;
+	t_point3d				s;
+	t_point3d				e;
+};
+typedef struct s_bshm_line	t_bshm_line;
+
 /*
 **	MACROS
 */
-
 
 # define PROJX(p, map) (p.x -= (double)(map->width - 1) / 2.0f)
 # define PROJY(p, map) (p.y -= (double)(map->height - 1) / 2.0f)
@@ -85,6 +97,8 @@ void						render(t_mlx *mlx);
 t_image						*image_init(t_mlx *mlx);
 
 t_point3d					point_project(t_point3d	p, t_mlx *mlx);
+
+t_bshm_line					line_init(t_point3d p1, t_point3d p2);
 
 void						log_point(t_point3d p);
 
