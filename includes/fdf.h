@@ -70,10 +70,10 @@ struct						s_bshm_line
 	int						dy;
 	int						sx;
 	int						sy;
-	int						derr;
-	double					err;
-	t_point3d				s;
-	t_point3d				e;
+	int						er;
+	int						change;
+	t_point3d				p1;
+	t_point3d				p2;
 };
 typedef struct s_bshm_line	t_bshm_line;
 

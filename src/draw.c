@@ -31,20 +31,24 @@ void		draw_line(t_mlx *mlx, t_bshm_line line)
 {
 	int		x;
 	int		y;
+	int		a;
+	int		b;
+	int		i;
 
-	x = (int)line.s.x;
-	y = (int)line.s.y;
-	while (x <= line.e.x)
+	x = (int)line.p1.x;
+	y = (int)line.p1.y;
+	a = 2 * line.dy;
+	b = a - 2 * line.dx;
+	i = -1;
+	while (++i < line.dx)
 	{
-		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
-		{
+		if (line.er < 0)
+			line.change == 1 ? y += line.sy : (x += line.sx) && (line.er += a);
+		else
+			(y += line.sy) && (x += line.sx) && (line.er += b);
+		if (x > 0 && x <= MIN_WIDTH && y >= 0 && y <= MIN_HEIGHT)
 			*(int *)(mlx->image->ptr +
-				((x + y * MIN_WIDTH) * mlx->image->bpp)) = 0xff0000;
-		}
-		line.err += line.derr;
-		while (line.err > 0.5)
-			(y += line.sy) && (line.err -= 1);
-		x += line.sx;
+					(x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff0000;
 	}
 }
 
