@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 22:07:20 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/13 21:32:01 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 	while (++i < size)
 		f(mlx, i % map->width, i / map->width);
 }
-
-/*
-**	function line(x0, y0, x1, y1)
-**	real deltax := x1 - x0
-**	real deltay := y1 - y0
-**	real deltaerr := abs(deltay / deltax)
-**	Assume deltax != 0 (line is not vertical),
-**	note that this division needs to be done
-**	in a way that preserves the fractional part
-**	real error := 0.0 // No error at start
-**	int y := y0
-**	for x from x0 to x1
-**		plot(x,y)
-**		error := error + deltaerr
-**		while error ≥ 0.5 then
-**			y := y + sign(deltay) * 1
-**			error := error - 1.0
-*/
 
 void		draw_line(t_mlx *mlx, t_bshm_line line)
 {
