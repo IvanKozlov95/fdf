@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 21:32:01 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/13 22:51:36 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,9 @@ void		light_points(t_mlx *mlx, int x, int y)
 				((int)p.x + (int)p.y * MIN_WIDTH) * mlx->image->bpp) = 0x00ff00;
 }
 
-void		asd(t_mlx *mlx, int x, int y)
-{
-	t_point3d	p;
-	t_point3d	p2;
-
-	p = point_project(GET_POINT(mlx->map, x, y), mlx);
-	p2 = point_project(GET_POINT(mlx->map, x, y + 1), mlx);
-	draw_line(mlx, line_init(p, p2));
-}
-
 void		render(t_mlx *mlx)
 {
 	iterate_points(mlx, draw_lines);
 	iterate_points(mlx, light_points);
-	// asd(mlx, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image->image, 0, 0);
 }
