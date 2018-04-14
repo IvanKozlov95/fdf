@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 22:50:27 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/13 23:55:22 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ t_map						*init_map(int width, int height);
 int							populate_map(t_map **m, t_list *list);
 int							read_map(int fd, t_map **m);
 void						render(t_mlx *mlx);
-void						iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int));
+void						iterate_points(t_mlx *mlx,
+								void (*f)(t_mlx *, int, int));
 
 t_image						*image_init(t_mlx *mlx);
 

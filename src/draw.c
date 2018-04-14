@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 23:51:43 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 00:12:15 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 #include <mlx.h>
 #include <stdio.h>
 
-void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
-{
-	int		i;
-	int		size;
-	t_map	*map;
-
-	i = -1;
-	map = mlx->map;
-	size = map->height * map->width;
-	while (++i < size)
-		f(mlx, i % map->width, i / map->width);
-}
-
-void	set_pixel(t_image *img, int x, int y, int color)
+void		set_pixel(t_image *img, int x, int y, int color)
 {
 	if (x < 0 || x >= MIN_WIDTH || y < 0 || y >= MIN_HEIGHT)
 		return ;
@@ -50,20 +37,11 @@ void		draw_line(t_mlx *mlx, t_bshm_line line)
 	while (++i < line.dx)
 	{
 		if (line.er < 0)
-		{
 			line.change == 1 ? (y += line.sy) : (x += line.sx);
-			line.er += a;
-		}
 		else
-		{
-			y += line.sy;
-			x += line.sx;
-			line.er += b;
-		}
-		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
-			// *(int *)(mlx->image->ptr +
-			// 		(x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff00ff;
-			set_pixel(mlx->image, x, y, 0xff00ff);
+			(y += line.sy) && (x += line.sx);
+		line.er += line.er < 0 ? a : b;
+		set_pixel(mlx->image, x, y, 0xff00ff);
 	}
 }
 
@@ -91,9 +69,7 @@ void		light_points(t_mlx *mlx, int x, int y)
 
 	p = GET_POINT(mlx->map, x, y);
 	p = point_project(p, mlx);
-	if (p.x > 0 && p.x <= MIN_WIDTH && p.y >= 0 && p.y <= MIN_HEIGHT)
-		*(int *)(mlx->image->ptr +
-				((int)p.x + (int)p.y * MIN_WIDTH) * mlx->image->bpp) = 0x00ff00;
+	set_pixel(mlx->image, p.x, p.y, 0x00ff00);
 }
 
 void		render(t_mlx *mlx)
