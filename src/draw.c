@@ -43,12 +43,16 @@ void		draw_line(t_mlx *mlx, t_bshm_line line)
 	while (++i < line.dx)
 	{
 		if (line.er < 0)
-			line.change == 1 ? y += line.sy : (x += line.sx) && (line.er += a);
+		{
+			line.change == 1 ? (y += line.sy) : (x += line.sx);
+			line.er += a;
+		}
 		else
-			(y += line.sy) && (x += line.sx) && (line.er += b);
-		if (x > 0 && x <= MIN_WIDTH && y >= 0 && y <= MIN_HEIGHT)
-			*(int *)(mlx->image->ptr +
-					(x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff0000;
+		{
+			y += line.sy;
+			x += line.sx;
+			line.er += b;
+		}
 	}
 }
 
