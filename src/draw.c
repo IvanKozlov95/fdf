@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 22:51:36 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/13 23:51:43 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 	size = map->height * map->width;
 	while (++i < size)
 		f(mlx, i % map->width, i / map->width);
+}
+
+void	set_pixel(t_image *img, int x, int y, int color)
+{
+	if (x < 0 || x >= MIN_WIDTH || y < 0 || y >= MIN_HEIGHT)
+		return ;
+	*(int *)(img->ptr + ((y * MIN_WIDTH + x) * img->bpp)) = color;
 }
 
 void		draw_line(t_mlx *mlx, t_bshm_line line)
@@ -53,6 +60,10 @@ void		draw_line(t_mlx *mlx, t_bshm_line line)
 			x += line.sx;
 			line.er += b;
 		}
+		if (x > 0 && x <= MIN_WIDTH && y > 0 && y <= MIN_HEIGHT)
+			// *(int *)(mlx->image->ptr +
+			// 		(x + y * MIN_WIDTH) * mlx->image->bpp) = 0xff00ff;
+			set_pixel(mlx->image, x, y, 0xff00ff);
 	}
 }
 
