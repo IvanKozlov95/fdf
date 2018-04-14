@@ -6,7 +6,7 @@
 #    By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/08 21:31:12 by ikozlov           #+#    #+#              #
-#    Updated: 2018/04/09 19:17:57 by ikozlov          ###   ########.fr        #
+#    Updated: 2018/04/14 00:22:26 by ikozlov          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,22 @@ LIB += -framework OpenGL -framework AppKit
 # includes
 INCLUDES = -I $(LIBFT_DIR)includes -I includes/ -I $(MLX_DIR)
 
+# norm
+NORM = norminette
+NORM_OUR = norm.out
+NORM_ERR = norm.err
+
 all: $(NAME)
+
+norm:
+	@$(NORM) $(SRC_DIR) $(INC_DIR) > $(NORM_OUR)
+	@cat $(NORM_OUR) | grep "Error" > $(NORM_ERR) || touch $(NORM_ERR)
+	@if test -s $(NORM_ERR); then\
+		cat $(NORM_OUR);\
+	else\
+		echo "You all set!";\
+	fi;
+	@rm -rf $(NORM_OUR) $(NORM_ERR)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR)
@@ -72,4 +87,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all $(NAME) clean fclean re
+.PHONY: all $(NAME) clean fclean re norm
