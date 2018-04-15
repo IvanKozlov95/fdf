@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 23:55:22 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:09:03 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ int							read_map(int fd, t_map **m);
 void						render(t_mlx *mlx);
 void						iterate_points(t_mlx *mlx,
 								void (*f)(t_mlx *, int, int));
+
+int							hook_keys(int key, t_mlx *mlx);
 
 t_image						*image_init(t_mlx *mlx);
 

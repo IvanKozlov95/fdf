@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 21:35:24 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/10 20:49:12 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:08:36 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		main(int ac, char *av[])
 		die(1, ERR_MLXINIT);
 	mlx->map = map;
 	render(mlx);
+	mlx_key_hook(mlx->window, hook_keys, mlx);
 	mlx_loop(mlx->mlx);
 	return (0);
 }
