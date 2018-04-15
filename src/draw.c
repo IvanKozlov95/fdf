@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:27:12 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 22:3:04 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void		draw_line(t_mlx *mlx, t_bshm_line line)
 		else
 			(y += line.sy) && (x += line.sx);
 		line.er += line.er < 0 ? a : b;
-		set_pixel(mlx->image, x, y, 0xff00ff);
+		set_pixel(mlx->image, x, y, get_color(line.p1.color,
+			line.p2.color, PERCENT(i, line.dx)));
 	}
 }
 

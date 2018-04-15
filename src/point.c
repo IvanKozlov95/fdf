@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:21:27 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:23:36 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 23:10:17 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_point3d	rotate(t_point3d p)
 	z = v.z;
 	v.y = cos(0.5) * y - sin(0.5) * z;
 	v.z = sin(0.5) * y + cos(0.5) * z;
+	v.color = p.color;
 	return (v);
 }
 

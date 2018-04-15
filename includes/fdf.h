@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:23:24 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 22:46:29 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct						s_point3d
 	double					x;
 	double					y;
 	double					z;
+	int						color;
 	void					*info;
 };
 typedef struct s_point3d	t_point3d;
@@ -90,9 +91,11 @@ typedef struct s_bshm_line	t_bshm_line;
 # define GET_POINT(map, x, y) ((map->points[(y) * map->width + x]))
 # define POINTDXINT(p1, p2) (((int)p1.x - (int)p2.x))
 # define POINTDYINT(p1, p2) (((int)p1.y - (int)p2.y))
+# define PERCENT(p, m) ((double)p / 100 * (double)m)
+# define LERP(f, s, p) ((f) + ((s) - (f)) * p)
 # define EXPR(c) ((c) || 1)
 # define SWAP(a, b, t) (EXPR(t = a) && EXPR(a = b) && EXPR(b = t))
-# define ASSIGN(v, e) (v = e)
+# define ASS(v, e) (v = e)
 
 /*
 **	Declarations
@@ -116,5 +119,6 @@ void						log_point(t_point3d p);
 void						print_ponts(t_mlx *mlx);
 
 void						ft_free_split(char **sp);
+int							get_color(int c1, int c2, double p);
 
 #endif
