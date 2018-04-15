@@ -121,4 +121,11 @@ void						print_ponts(t_mlx *mlx);
 void						ft_free_split(char **sp);
 int							get_color(int c1, int c2, double p);
 
+int							hook_mouse_move(int x, int y, t_mlx *mlx);
+int							hook_mouse_down(int button,
+								int x, int y, t_mlx *mlx);
+int							hook_mouse_up(int button, int x, int y, t_mlx *mlx);
+int							hook_keys(int key, t_mlx *mlx);
+
+
 #endif
