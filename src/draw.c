@@ -6,11 +6,12 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 20:04:31 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 00:12:15 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:27:12 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "memory.h"
 #include <mlx.h>
 #include <stdio.h>
 
@@ -74,6 +75,7 @@ void		light_points(t_mlx *mlx, int x, int y)
 
 void		render(t_mlx *mlx)
 {
+	ft_bzero(mlx->image->ptr, MIN_WIDTH * MIN_HEIGHT * mlx->image->bpp);
 	iterate_points(mlx, draw_lines);
 	iterate_points(mlx, light_points);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->image->image, 0, 0);

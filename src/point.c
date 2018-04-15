@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/10 16:21:27 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/13 23:31:10 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:23:36 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_point3d	point_project(t_point3d p, t_mlx *mlx)
 	offsety = MIN_HEIGHT / 2;
 	p.x -= (double)(mlx->map->width - 1) / 2.0f;
 	p.y -= (double)(mlx->map->height - 1) / 2.0f;
-	p.z -= (double)(1 + 1) / 2.0f;
+	p.z = p.z == 0 ? 0 : p.z - mlx->depth;
+	// p.z -= (double)(1 + 1) / 2.0f;
 	p = rotate(p);
 	p.x *= scale;
 	p.y *= scale;

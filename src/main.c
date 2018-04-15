@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/08 21:35:24 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:08:36 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:23:51 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_mlx	*init_mlx(char *title)
 	mlx->mlx = mlx_init();
 	mlx->window = mlx_new_window(mlx->mlx, MIN_WIDTH, MIN_HEIGHT, title);
 	mlx->image = image_init(mlx);
+	mlx->depth = 5;
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);
 	return (mlx);

@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:09:03 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:23:24 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ struct						s_mlx
 	t_image					*image;
 	void					*window;
 	t_map					*map;
+	int						depth;
 };
 typedef struct s_mlx		t_mlx;
 
