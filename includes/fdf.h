@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivankozlov <ivankozlov@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 13:55:13 by ivankozlov       ###   ########.fr       */
+/*   Updated: 2018/04/15 16:57:59 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 
 # include "matrix.h"
+# include "structs.h"
 # include "list.h"
 # include <stdio.h>
 
@@ -25,61 +26,18 @@
 # define ERR_INVMAP "error: invalid map"
 # define ERR_MLXINIT "error: mlx couldn't init"
 
+enum		e_mouse
+{
+	none,
+	left,
+	right,
+	mid,
+	scr_up,
+	scr_down
+};
+
 # define MIN_WIDTH 1000
 # define MIN_HEIGHT 600
-
-struct						s_image
-{
-	void					*image;
-	void					*ptr;
-	int						bpp;
-	int						stride;
-	int						endian;
-};
-typedef struct s_image		t_image;
-
-struct						s_point3d
-{
-	double					x;
-	double					y;
-	double					z;
-	int						color;
-	void					*info;
-};
-typedef struct s_point3d	t_point3d;
-
-struct						s_map
-{
-	int						width;
-	int						height;
-	int						d_max;
-	int						d_min;
-	t_point3d				*points;
-};
-typedef struct s_map		t_map;
-
-struct						s_mlx
-{
-	void					*mlx;
-	t_image					*image;
-	void					*window;
-	t_map					*map;
-	int						depth;
-};
-typedef struct s_mlx		t_mlx;
-
-struct						s_bshm_line
-{
-	int						dx;
-	int						dy;
-	int						sx;
-	int						sy;
-	int						er;
-	int						change;
-	t_point3d				p1;
-	t_point3d				p2;
-};
-typedef struct s_bshm_line	t_bshm_line;
 
 /*
 **	MACROS
@@ -106,8 +64,6 @@ int							read_map(int fd, t_map **m);
 void						render(t_mlx *mlx);
 void						iterate_points(t_mlx *mlx,
 								void (*f)(t_mlx *, int, int));
-
-int							hook_keys(int key, t_mlx *mlx);
 
 t_image						*image_init(t_mlx *mlx);
 
