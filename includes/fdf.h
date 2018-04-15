@@ -51,6 +51,8 @@ struct						s_map
 {
 	int						width;
 	int						height;
+	int						d_max;
+	int						d_min;
 	t_point3d				*points;
 };
 typedef struct s_map		t_map;
