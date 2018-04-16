@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:43:15 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 20:59:56 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:22:19 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,35 @@ void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
 	size = map->height * map->width;
 	while (++i < size)
 		f(mlx, i % map->width, i / map->width);
+}
+
+void		toggle_colors(t_mlx *mlx)
+{
+	mlx->style = mlx->style == 3
+		? 0 : mlx->style + 1;
+	if (mlx->style == 0)
+	{
+		mlx->c_max = 0xFFFFFF;
+		mlx->c_min = 0xFFFFFF;
+	}
+	if (mlx->style == 1)
+	{
+		mlx->c_max = 0xFFFFFF;
+		mlx->c_min = 0xFF0000;
+	}
+	if (mlx->style == 2)
+	{
+		mlx->c_max = 0xFFFFFF;
+		mlx->c_min = 0x00FF00;
+	}
+	if (mlx->style == 3)
+	{
+		mlx->c_max = 0xFFFFFF;
+		mlx->c_min = 0x0000FF;
+	}
+	if (mlx->style == 4)
+	{
+		mlx->c_max = 0xFF00FF;
+		mlx->c_min = 0x00FF00;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/14 21:02:12 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 21:00:01 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:08:33 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int		hook_keys(int key, t_mlx *mlx)
 		mlx->map->d_max++;
 	else if (key == 2)
 		mlx->map->d_max--;
+	else if (key == 8)
+	{
+		toggle_colors(mlx);
+		fill_colors(mlx->map, mlx->c_min, mlx->c_max);
+	}
 	render(mlx);
 	return (0);
 }

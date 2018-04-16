@@ -39,7 +39,6 @@ t_mlx	*init_mlx(char *title)
 	mlx->mlx = mlx_init();
 	mlx->window = mlx_new_window(mlx->mlx, MIN_WIDTH, MIN_HEIGHT, title);
 	mlx->image = image_init(mlx);
-	mlx->depth = 5;
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);
 	mlx->cam.offsetx = MIN_WIDTH / 2;
@@ -47,6 +46,8 @@ t_mlx	*init_mlx(char *title)
 	mlx->cam.x = 0.5;
 	mlx->cam.y = 0.5;
 	mlx->cam.scale = 32;
+	mlx->style = 3;
+	toggle_colors(mlx);
 	return (mlx);
 }
 
@@ -82,6 +83,7 @@ int		main(int ac, char *av[])
 	if (mlx == NULL)
 		die(1, ERR_MLXINIT);
 	mlx->map = map;
+	fill_colors(mlx->map, mlx->c_min, mlx->c_max);
 	render(mlx);
 	mlx_key_hook(mlx->window, hook_keys, mlx);
 	mlx_hook(mlx->window, 4, 0, hook_mouse_down, mlx);

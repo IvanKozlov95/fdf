@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:52:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 21:00:40 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:24:51 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set_depths_map(t_map *map, t_point3d *p)
 		map->d_min = p->z;
 }
 
-void		fill_colors(t_map *m)
+void		fill_colors(t_map *m, int c_min, int c_max)
 {
 	int			i;
 	int			j;
@@ -40,11 +40,9 @@ void		fill_colors(t_map *m)
 			z = p->z;
 			if (z != 0)
 				z -= (double)(m->d_max + m->d_min) / 2.0f;
-			c = get_color(0xff0000, 0xffffff,
-				LERP(m->d_min, m->d_max,
+			c = get_color(c_min, c_max, LERP(m->d_min, m->d_max,
 					PERCENT(z, m->d_max - m->d_min)));
 			p->color = c;
-		}
 	}
 }
 
@@ -70,7 +68,6 @@ int			populate_map(t_map **m, t_list *list)
 		ft_free_split(split);
 		list = list->next;
 	}
-	fill_colors(*m);
 	return (1);
 }
 

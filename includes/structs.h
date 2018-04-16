@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 16:46:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 17:08:53 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:02:58 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ struct						s_mlx
 	t_map					*map;
 	t_mouse					mouse;
 	t_cam					cam;
-	int						depth;
+	int						style;
+	int						c_min;
+	int						c_max;
 };
 typedef struct s_mlx		t_mlx;
 

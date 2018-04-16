@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 17:02:07 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:10:23 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ enum		e_mouse
 t_map						*init_map(int width, int height);
 int							populate_map(t_map **m, t_list *list);
 int							read_map(int fd, t_map **m);
+void						fill_colors(t_map *m, int c_min, int c_max);
+
 void						render(t_mlx *mlx);
 void						iterate_points(t_mlx *mlx,
 								void (*f)(t_mlx *, int, int));
@@ -77,6 +79,7 @@ void						print_ponts(t_mlx *mlx);
 
 void						ft_free_split(char **sp);
 int							get_color(int c1, int c2, double p);
+void						toggle_colors(t_mlx *mlx);
 
 int							hook_mouse_move(int x, int y, t_mlx *mlx);
 int							hook_mouse_down(int button,
