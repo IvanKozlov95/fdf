@@ -13,14 +13,6 @@
 #include "fdf.h"
 #include "memory.h"
 #include <mlx.h>
-#include <stdio.h>
-
-void		set_pixel(t_image *img, int x, int y, int color)
-{
-	if (x < 0 || x >= MIN_WIDTH || y < 0 || y >= MIN_HEIGHT)
-		return ;
-	*(int *)(img->ptr + ((y * MIN_WIDTH + x) * img->bpp)) = color;
-}
 
 void		draw_line(t_mlx *mlx, t_bshm_line line)
 {

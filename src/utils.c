@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ivankozlov <ivankozlov@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:43:15 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 13:47:25 by ivankozlov       ###   ########.fr       */
+/*   Updated: 2018/04/15 17:00:49 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ int		get_color(int c1, int c2, double p)
 	g = LERP((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, p);
 	b = LERP(c1 & 0xFF, c2 & 0xFF, p);
 	return (r << 16 | g << 8 | b);
+}
+
+void		iterate_points(t_mlx *mlx, void (*f)(t_mlx *, int, int))
+{
+	int		i;
+	int		size;
+	t_map	*map;
+
+	i = -1;
+	map = mlx->map;
+	size = map->height * map->width;
+	while (++i < size)
+		f(mlx, i % map->width, i / map->width);
 }

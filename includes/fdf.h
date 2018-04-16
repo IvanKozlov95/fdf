@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 16:57:59 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 17:02:07 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void						iterate_points(t_mlx *mlx,
 								void (*f)(t_mlx *, int, int));
 
 t_image						*image_init(t_mlx *mlx);
+void						set_pixel(t_image *img, int x, int y, int color);
 
 t_point3d					point_project(t_point3d	p, t_mlx *mlx);
 

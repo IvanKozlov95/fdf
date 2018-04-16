@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/14 21:02:12 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 21:25:07 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 17:01:05 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,31 @@ int		hook_keys(int key, t_mlx *mlx)
 		mlx->depth--;
 	render(mlx);
 	return (0);
+}
+
+int		hook_mouse_down(int button, int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	mlx->mouse.button = button;
+	printf("Button %d\n", button);
+	return (1);
+}
+
+int		hook_mouse_up(int button, int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	(void)button;
+	printf("Here\n");
+	mlx->mouse.button = none;
+	return (1);
+}
+
+int		hook_mouse_move(int x, int y, t_mlx *mlx)
+{
+	(void)x;
+	(void)y;
+	(void)mlx;
+	return (1);
 }
