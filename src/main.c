@@ -42,6 +42,11 @@ t_mlx	*init_mlx(char *title)
 	mlx->depth = 5;
 	if (mlx->mlx == NULL || mlx->window == NULL)
 		del_mlx(&mlx);
+	mlx->cam.offsetx = MIN_WIDTH / 2;
+	mlx->cam.offsety = MIN_HEIGHT / 2;
+	mlx->cam.x = 0.5;
+	mlx->cam.y = 0.5;
+	mlx->cam.scale = 32;
 	return (mlx);
 }
 
