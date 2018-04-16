@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/15 16:46:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 16:52:50 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 17:08:53 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ struct						s_map
 };
 typedef struct s_map		t_map;
 
-struct					s_mouse
+struct						s_mouse
 {
 	int		button;
 	int		x;
@@ -51,7 +51,17 @@ struct					s_mouse
 	int		lastx;
 	int		lasty;
 };
-typedef struct s_mouse	t_mouse;
+typedef struct s_mouse		t_mouse;
+
+struct						s_cam
+{
+	double		offsetx;
+	double		offsety;
+	double		x;
+	double		y;
+	int			scale;
+};
+typedef struct s_cam		t_cam;
 
 struct						s_mlx
 {
@@ -60,6 +70,7 @@ struct						s_mlx
 	void					*window;
 	t_map					*map;
 	t_mouse					mouse;
+	t_cam					cam;
 	int						depth;
 };
 typedef struct s_mlx		t_mlx;
