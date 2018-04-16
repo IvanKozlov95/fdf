@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:52:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 21:24:51 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:27:15 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		fill_colors(t_map *m, int c_min, int c_max)
 			c = get_color(c_min, c_max, LERP(m->d_min, m->d_max,
 					PERCENT(z, m->d_max - m->d_min)));
 			p->color = c;
+		}
 	}
 }
 
