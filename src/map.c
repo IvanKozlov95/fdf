@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 14:52:37 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/14 22:55:26 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 21:00:40 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		fill_colors(t_map *m)
 	int			i;
 	int			j;
 	int			c;
+	double		z;
 	t_point3d	*p;
 
 	i = -1;
@@ -36,8 +37,12 @@ void		fill_colors(t_map *m)
 		while (++j < m->width)
 		{
 			p = &GET_POINT(m, j, i);
+			z = p->z;
+			if (z != 0)
+				z -= (double)(m->d_max + m->d_min) / 2.0f;
 			c = get_color(0xff0000, 0xffffff,
-				LERP(m->d_min, m->d_max, PERCENT(p->z, m->d_max - m->d_min)));
+				LERP(m->d_min, m->d_max,
+					PERCENT(z, m->d_max - m->d_min)));
 			p->color = c;
 		}
 	}
