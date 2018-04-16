@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 16:43:15 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 17:00:49 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/15 20:59:56 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int		get_color(int c1, int c2, double p)
 
 	if (c1 == c2)
 		return (c1);
+	if (p == 0.0)
+		return (c1);
+	if (p == 1.0)
+		return (c2);
 	r = LERP((c1 >> 16) & 0xFF, (c2 >> 16) & 0xFF, p);
 	g = LERP((c1 >> 8) & 0xFF, (c2 >> 8) & 0xFF, p);
 	b = LERP(c1 & 0xFF, c2 & 0xFF, p);
