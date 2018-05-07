@@ -6,7 +6,7 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 21:10:23 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/04/20 22:43:40 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,5 @@ int							hook_mouse_down(int button,
 								int x, int y, t_mlx *mlx);
 int							hook_mouse_up(int button, int x, int y, t_mlx *mlx);
 int							hook_keys(int key, t_mlx *mlx);
-
 
 #endif
