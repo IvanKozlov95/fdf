@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/08 21:35:24 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/15 16:53: by ikozlov          ###   ########.fr       */
+/*   Created: 2018/05/07 12:27:59 by ikozlov           #+#    #+#             */
+/*   Updated: 2018/05/07 12:43:24 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "memory.h"
 #include "fdf.h"
+#include "ft_printf.h"
+
 #include <mlx.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -23,48 +23,17 @@ void	die(int code, char *msg)
 	exit(code);
 }
 
-void	del_mlx(t_mlx **mlx)
+void	display_help(void)
 {
-	if (*mlx)
-		ft_free(3, (*mlx)->mlx, (*mlx)->window, *mlx);
-	*mlx = NULL;
-}
-
-t_mlx	*init_mlx(char *title)
-{
-	t_mlx	*mlx;
-
-	mlx = NULL;
-	mlx = ft_memalloc(sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	mlx->window = mlx_new_window(mlx->mlx, MIN_WIDTH, MIN_HEIGHT, title);
-	mlx->image = image_init(mlx);
-	if (mlx->mlx == NULL || mlx->window == NULL)
-		del_mlx(&mlx);
-	mlx->cam.offsetx = MIN_WIDTH / 2;
-	mlx->cam.offsety = MIN_HEIGHT / 2;
-	mlx->cam.x = 0.5;
-	mlx->cam.y = 0.5;
-	mlx->cam.scale = 32;
-	mlx->style = 3;
-	toggle_colors(mlx);
-	return (mlx);
-}
-
-void	print_mlx(t_mlx *mlx)
-{
-	int			i;
-	t_map		*map;
-	t_point3d	p;
-
-	i = -1;
-	map = mlx->map;
-	ft_printf("Points\n");
-	while (++i < map->width * map->height)
-	{
-		p = GET_POINT(map, i % map->width, i / map->width);
-		ft_printf("#%d (%d, %d, %d)\n", i, (int)p.x, (int)p.y, (int)p.z);
-	}
+	ft_printf("---------------------------------------------------------\n");
+	ft_printf("|\t\t\tFDF @ 42\t\t\t|\n");
+	ft_printf("|\t\tmouse left - rotate\t\t\t|\n");
+	ft_printf("|\t\tmouse right - move\t\t\t|\n");
+	ft_printf("|\t\twheel - zoom in/out\t\t\t|\n");
+	ft_printf("|\t\tc - change color\t\t\t|\n");
+	ft_printf("|\t\tu - increase z axis\t\t\t|\n");
+	ft_printf("|\t\td - decrease z axis\t\t\t|\n");
+	ft_printf("---------------------------------------------------------\n");
 }
 
 int		main(int ac, char *av[])
@@ -83,12 +52,10 @@ int		main(int ac, char *av[])
 	if (mlx == NULL)
 		die(1, ERR_MLXINIT);
 	mlx->map = map;
+	display_help();
 	fill_colors(mlx->map, mlx->c_min, mlx->c_max);
 	render(mlx);
-	mlx_key_hook(mlx->window, hook_keys, mlx);
-	mlx_hook(mlx->window, 4, 0, hook_mouse_down, mlx);
-	mlx_hook(mlx->window, 5, 0, hook_mouse_up, mlx);
-	mlx_hook(mlx->window, 6, 0, hook_mouse_move, mlx);
+	bind_hooks(mlx);
 	mlx_loop(mlx->mlx);
 	return (0);
 }

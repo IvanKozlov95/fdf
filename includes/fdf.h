@@ -6,17 +6,14 @@
 /*   By: ikozlov <ikozlov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 13:38:22 by ikozlov           #+#    #+#             */
-/*   Updated: 2018/04/20 22:43:40 by ikozlov          ###   ########.fr       */
+/*   Updated: 2018/05/07 12:44:56 by ikozlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "matrix.h"
 # include "structs.h"
-# include "list.h"
-# include <stdio.h>
 
 /*
 **	String constants
@@ -63,6 +60,10 @@ int							populate_map(t_map **m, t_list *list);
 int							read_map(int fd, t_map **m);
 void						fill_colors(t_map *m, int c_min, int c_max);
 
+void						print_mlx(t_mlx *mlx);
+void						del_mlx(t_mlx **mlx);
+t_mlx						*init_mlx(char *title);
+
 void						render(t_mlx *mlx);
 void						iterate_points(t_mlx *mlx,
 								void (*f)(t_mlx *, int, int));
@@ -74,13 +75,11 @@ t_point3d					point_project(t_point3d	p, t_mlx *mlx);
 
 t_bshm_line					line_init(t_point3d p1, t_point3d p2);
 
-void						log_point(t_point3d p);
-void						print_ponts(t_mlx *mlx);
-
 void						ft_free_split(char **sp);
 int							get_color(int c1, int c2, double p);
 void						toggle_colors(t_mlx *mlx);
 
+void						bind_hooks(t_mlx *mlx);
 int							hook_mouse_move(int x, int y, t_mlx *mlx);
 int							hook_mouse_down(int button,
 								int x, int y, t_mlx *mlx);
