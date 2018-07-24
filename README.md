@@ -1,4 +1,5 @@
-# fdf [@42born2code][42]
+# fdf 
+### [42 school Silicon Valley][42]
 
 A simple 3D height-map renderer. You can rotate models, color is defined by
 relative height in the map. More features planned!
